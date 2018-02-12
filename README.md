@@ -76,13 +76,16 @@ I verified that my perspective transform was working as expected by drawing the 
 
 #### 4. Describe how (and identify where in your code) you identified lane-line pixels and fit their positions with a polynomial?
 
-Then I fit my lane lines with a 2nd order polynomial like this:
+I first take a histogram along all the columns in the lower half of the image. Then, I am adding up the pixel values along each column in the image. In my thresholded binary image, pixels are either 0 or 1, so the two most prominent peaks in this histogram will be good indicators of the x-position of the base of the lane lines. I can use that as a starting point for where to search for the lines. From that point, I can use a sliding window, placed around the line centers, to find and follow the lines up to the top of the frame. Finally, I used a second order polynomial to fit through the pixels belonging to the lane to obtain the estimate for the lane line.
 
 ![alt text][image4]
 
 #### 5. Describe how (and identify where in your code) you calculated the radius of curvature of the lane and the position of the vehicle with respect to center.
 
-I did this from lines 79 through 85 in my 10th code cell in the notebook.
+The radius of curvature was calculated by converting x and y values to the real world space. For the project, I have assumed that if you're projecting a section of the lane, the lane is about 30 meters long and 3.7 meters wide. These steps were implemented in the `radius_of_curvature()` function in the 10th code cell of the notebook.
+
+To calculate the position of the vehicle with respect to the center, I have assumed that the camera is mounted at the center of the car, such that the lane center is the midpoint at the bottom of the image between the two lines detected earlier. The offset of the lane center from the center of the image (converted from pixels to meters) is the distance from the center of the lane. The implementation was in the 11th code cell (line 104 - 106).
+
 
 #### 6. Provide an example image of your result plotted back down onto the road such that the lane area is identified clearly.
 
