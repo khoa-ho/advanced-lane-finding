@@ -1,4 +1,5 @@
 **Advanced Lane Finding Project**
+=================================
 
 The goals / steps of this project are the following:
 
@@ -16,7 +17,7 @@ The goals / steps of this project are the following:
 [image1]: ./output_images/undistort.png "Undistorted"
 [image2]: ./output_images/warp.png "Road Transformed"
 [image3]: ./output_images/threshold.png "Binary Thresholded"
-[image4]: ./output_images/fill-lane.jpg "Lane Filled"
+[image4]: ./output_images/fill-lane.png "Lane Filled"
 [video1]: ./result.mp4 "Video"
 
 ## [Rubric](https://review.udacity.com/#!/rubrics/571/view) Points
