@@ -14,6 +14,7 @@ The goals / steps of this project are the following:
 
 [//]: # (Image References)
 
+[image0]: ./output_images/chessboard.png "Chessboard"
 [image1]: ./output_images/undistort.png "Undistorted"
 [image2]: ./output_images/warp.png "Road Transformed"
 [image3]: ./output_images/threshold.png "Binary Thresholded"
@@ -40,7 +41,9 @@ The code for this step is contained in the 2nd code cell of the IPython notebook
 
 I start by preparing "object points", which will be the (x, y, z) coordinates of the chessboard corners in the world. Here I am assuming the chessboard is fixed on the (x, y) plane at z=0, such that the object points are the same for each calibration image.  Thus, `objp` is just a replicated array of coordinates, and `objpoints` will be appended with a copy of it every time I successfully detect all chessboard corners in a test image.  `imgpoints` will be appended with the (x, y) pixel position of each of the corners in the image plane with each successful chessboard detection.  
 
-I then used the output `objpoints` and `imgpoints` to compute the camera calibration and distortion coefficients using the `cv2.calibrateCamera()` function.  I applied this distortion correction to the test image using the `cv2.undistort()` function (4th code cell).
+I then used the output `objpoints` and `imgpoints` to compute the camera calibration and distortion coefficients using the `cv2.calibrateCamera()` function.  I applied this distortion correction to the test image using the `cv2.undistort()` function (4th code cell). Following is an example.
+
+![alt text][image0]
 
 ### Pipeline (single images)
 
@@ -60,14 +63,14 @@ I used color thresholds to generate a binary image (thresholding steps in the 8t
 The code for my perspective transform includes a function called `transform_perspective()`, which appears in the 6th code cell of the IPython notebook.  I chose the hardcode the source and destination points in the following manner:
 
 ```python
-src = np.float32([[490, 482],
-                  [810, 482],
-                  [1250, 720],
-                  [40, 720]])
-dst = np.float32([[0, 0], 
-                  [1280, 0], 
-                  [1250, 720],
-                  [40, 720]])
+src = np.float32([[569, 478],
+                  [753, 478],
+                  [1139, 719],
+                  [258, 719]])
+dst = np.float32([[300, 0],
+                  [1000, 0],
+                  [1000, 719],
+                  [300, 719]])
 ```
 
 I verified that my perspective transform was working as expected by drawing the `src` and `dst` points onto a test image and its warped counterpart to verify that the lines appear parallel in the warped image.
